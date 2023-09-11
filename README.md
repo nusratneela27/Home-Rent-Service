@@ -33,4 +33,5 @@ Hosted in Firebase -> [Home To Go](https://project-6bc24.web.app)
 - Have an Error 404 page 
 - Stripe payment method for booking a single room
 
-## <img src="https://i.ibb.co/LnVZ5Wh/home.png" alt="Home" width="300" height="500"/>  Home To Go 
+## Home Page
+<img src="https://i.ibb.co/LnVZ5Wh/home.png" alt="Home" width="300" height="500"/>

@@ -79,7 +79,7 @@ const UpdateRoomForm = ({
               <DateRange
                 onChange={handleDates}
                 ranges={[dates]}
-                rangeColors={['#F43F5E']}
+                rangeColors={['#7C7472']}
               />
             </div>
           </div>
@@ -99,7 +99,7 @@ const UpdateRoomForm = ({
                     accept='image/*'
                     hidden
                   />
-                  <div className='bg-amber-500 text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-amber-500'>
+                  <div className='bg-amber-950 text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-amber-500'>
                     Upload Image
                   </div>
                 </label>
@@ -201,7 +201,7 @@ const UpdateRoomForm = ({
 
         <button
           type='submit'
-          className='w-full p-3 mt-5 text-center font-medium text-white transition duration-200 rounded shadow-md bg-amber-500'
+          className='w-full p-3 mt-5 text-center font-medium text-white transition duration-200 rounded shadow-md bg-amber-950'
         >
           {loading ? (
             <TbFidgetSpinner className='m-auto animate-spin' size={24} />

@@ -1,9 +1,9 @@
 import React from 'react'
 import Container from '../../components/Shared/Container'
 import Header from '../../components/Rooms/Header'
-import RoomInfo from '../../components/Rooms/ RoomInfo'
 import RoomReservation from '../../components/Rooms/RoomReservation'
 import { useLoaderData } from 'react-router-dom'
+import RoomInfo from '../../components/Rooms/RoomInfo'
 
 const RoomDetails = () => {
   const roomData = useLoaderData()
