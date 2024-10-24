@@ -3,7 +3,6 @@ import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import { becomeAdmin, becomeHost } from '../../api/auth';
 import { toast } from 'react-hot-toast';
-// import Swal from 'sweetalert2';
 
 const AllUsers = () => {
     const { role } = useContext(AuthContext)
@@ -27,33 +26,31 @@ const AllUsers = () => {
         }
     };
 
-    // const handleDelete = user => {
-    //     Swal.fire({
-    //         title: 'Are you sure?',
-    //         text: "You won't be able to revert this!",
-    //         icon: 'warning',
-    //         showCancelButton: true,
-    //         confirmButtonColor: '#3085d6',
-    //         cancelButtonColor: '#d33',
-    //         confirmButtonText: 'Yes, delete it!'
-    //     }).then((result) => {
-    //         if (result.isConfirmed) {
-    //             fetch(`${import.meta.env.VITE_API_URL}/users/${user._id}`, {
-    //                 method: 'DELETE'
-    //             })
-    //                 .then(res => res.json())
-    //                 .then(data => {
-    //                     if (data.deletedCount > 0) {
-    //                         Swal.fire(
-    //                             'Deleted!',
-    //                             'User has been deleted.',
-    //                             'success'
-    //                         )
-    //                     }
-    //                 })
-    //         }
-    //     })
-    // }
+    const handleDelete = async (user) => {
+        try {
+            // Show a loading toast while the request is being processed
+            const deletingToastId = toast.loading('Deleting user...');
+    
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/users/${user._id}`, {
+                method: 'DELETE',
+            });
+    
+            if (res.ok) {
+                toast.success(`User ${user.email} has been deleted successfully`, {
+                    id: deletingToastId, // Dismiss the loading toast
+                });
+                refetch(); // Refresh the list of users after deletion
+            } else {
+                toast.error('Failed to delete user. Please try again.', {
+                    id: deletingToastId,
+                });
+            }
+        } catch (error) {
+            toast.error('An error occurred while deleting the user.');
+        }
+    };
+    
+    
 
     return (
         <div>
@@ -94,12 +91,12 @@ const AllUsers = () => {
                                         >
                                             Host
                                         </th>
-                                        {/* <th
+                                        <th
                                             scope='col'
                                             className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
                                         >
                                             Action
-                                        </th> */}
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -126,7 +123,7 @@ const AllUsers = () => {
                                                     Make Host
                                                 </button>
                                             </td>
-                                            {/* <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'><span
+                                            <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'><span
                                                 className='relative cursor-pointer inline-block px-3 py-1 font-semibold leading-tight'
                                             >
                                                 <span
@@ -136,7 +133,7 @@ const AllUsers = () => {
                                                 <span
                                                     onClick={() => handleDelete(user)} className='relative'>Delete User</span>
                                             </span>
-                                            </td> */}
+                                            </td>
                                         </tr>)
                                     }
                                 </tbody>
